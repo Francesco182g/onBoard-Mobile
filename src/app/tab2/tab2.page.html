@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Mappa
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+      <agm-map [latitude]="lat" [longitude]="lng">
+          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        SellaMap
+      </ion-card-title>
+      <p>
+        Attraverso i tasti direzionali puoi cercare punti di interesse oppure la sede del colloquio di lavoro.
+      </p>
+    </ion-card-content>
+
+    <ion-item>
+      <ion-icon name='navigate' item-start style="color: #d03e84"></ion-icon>
+      Sede di Lavoro Banca Sella dalla tua posizione
+      <ion-badge slot="end">12 km</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='navigate' item-start style="color: #55acee"></ion-icon>
+      Sede generale Banca Sella
+      <ion-badge slot="end">260 km</ion-badge>
+    </ion-item>
+
+  </ion-card>
+
+
+
+  </ion-content>
+    

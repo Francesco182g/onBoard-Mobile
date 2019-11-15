@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Area Personale
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  
+  
+  <form #formCtrl="ngForm">
+      <div align="center" *ngIf="formCtrl.form.valid">
+          
+        <img src="http://cdn.onlinewebfonts.com/svg/img_568657.png">
+          <h1>Marco Fasulo</h1>
+          <h2>32 anni</h2>
+      </div>
+      <h3> Dati Personali</h3>
+  <ion-list>
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" name="name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Cognome</ion-label>
+        <ion-input type="text" name="surname" required></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label >Birth Date</ion-label>
+          <ion-datetime required name="birthdate" displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" ></ion-datetime>
+      </ion-item>
+      
+  </ion-list>
+  <ion-button color="secondary" [disabled]="!formCtrl.form.valid" ion-button block >Save</ion-button>
+  <ion-button color="danger" ion-button block >Reset</ion-button>
+</form>
+</ion-content>

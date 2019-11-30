@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MenuController } from '@ionic/angular';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -9,7 +9,11 @@ import { MenuController } from '@ionic/angular';
 })
 export class TabsPage {
 
-  constructor(private menu: MenuController) { }
+  constructor(private menu: MenuController, public router: Router) { }
+
+  openTab2() {
+    this.router.navigate(['tab2.module']);
+  }
 
   openFirst() {
     this.menu.enable(true, 'first');

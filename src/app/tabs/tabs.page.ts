@@ -1,19 +1,39 @@
 import { Component, OnInit} from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
-export class TabsPage {
+export class TabsPage implements OnInit {
 
-  constructor(private menu: MenuController, public router: Router) { }
+  userEmail: string;
 
-  openTab2() {
-    this.router.navigate(['tab2.module']);
-  }
+  constructor(private menu: MenuController, public router: Router, private authService: AuthenticationService
+    ) { }
+
+    ngOnInit() {
+      if (this.authService.userDetails()) {
+        this.userEmail = this.authService.userDetails().email;
+      } else {
+        this.router.navigate(['login']);
+      }
+    }
+
+    logout() {
+      this.authService.logoutUser()
+      .then(res => {
+        console.log(res);
+        this.router.navigate(['login']);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    }
 
   openFirst() {
     this.menu.enable(true, 'first');

@@ -17,7 +17,7 @@
     <ion-card class="welcome-card">
       <img src="https://i.ibb.co/kDBmkwq/Logo-hype2.png" alt="" />
       <ion-card-header>
-        <ion-card-subtitle>Ciao Marco</ion-card-subtitle>
+        <ion-card-subtitle>Your Registered EmailID : {{userEmail}}</ion-card-subtitle>
         <ion-card-title>Bentornato InSella</ion-card-title>
       </ion-card-header>
       <ion-card-content>
@@ -53,4 +53,10 @@
                 <ion-label>Contatta il Responsabile</ion-label>
             </ion-item>
     </ion-list>
+    
+  <ion-footer (click)="logout()">
+    <ion-toolbar color="secondary">
+      <ion-title>Log out</ion-title>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Impostazioni
+    </ion-title>
+    <ion-icon slot="end" name="notifications"></ion-icon>
+    <ion-buttons slot="end">
+        <ion-button></ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <span>Light</span>
+  <label class="switch">
+    <input type="checkbox" (click)="toggle()" >
+    <span class="slider round"></span>
+  </label>
+  <span>Dark</span>
+</ion-content>

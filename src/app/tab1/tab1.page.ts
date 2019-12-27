@@ -1,17 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
 
-  constructor(public router: Router) {}
+  userEmail: string;
 
-  openTab2() {
-    this.router.navigate(['tab2']);
+  constructor(public router: Router, private authService: AuthenticationService) {}
+
+  ngOnInit() {
+    if (this.authService.userDetails()) {
+      this.userEmail = this.authService.userDetails().email;
+    } else {
+      this.router.navigate(['login']);
+    }
   }
 
+  logout() {
+    this.authService.logoutUser()
+    .then(res => {
+      console.log(res);
+      this.router.navigate(['login']);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
+  openTab2() {
+    this.router.navigate(['tabs/tab2']);
+  }
+
+  openTab3() {
+    this.router.navigate(['tabs/tab3']);
+  }
+
+  openTab4() {
+    this.router.navigate(['tabs/tab4']);
+  }
+
+  openTab5() {
+    this.router.navigate(['tabs/tab5']);
+  }
+
+  openSettings() {
+    this.router.navigate(['tabs/settings']);
+  }
 }

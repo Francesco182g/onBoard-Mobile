@@ -1,5 +1,17 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { finalize, tap } from 'rxjs/operators';
+import { FileSizePipe } from '../file-size.pipe';
+
+export interface MyData {
+  name: string;
+  filepath: string;
+  size: number;
+  date: string;
+}
 
 @Component({
   selector: 'app-tab3',
@@ -7,57 +19,42 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  private selectedItem: any;
-  private icons = [
-    'cloud-upload',
-    'photos',
-    'document',
-  ];
-  public items: Array<{author: string; note: string; icon: string; date: string }> = [];
-  constructor(public alertCtrl: AlertController) {
-      this.items.push({
-        author: 'Hai caricato un documento',
-        note: 'Contratto di Lavoro.pdf',
-        icon: this.icons[0],
-        date: '11/11 19:12'
-      });
-      this.items.push({
-        author: 'Hai caricato una immagine',
-        note: 'FotoTesserino.jpg',
-        icon: this.icons[0],
-        date: '11/11 14:45'
+// Upload Code
 
-      });
-      this.items.push({
-        author: 'Marco dal Backoffice',
-        note: 'Contratto di Lavoro da compilare.pdf',
-        icon: this.icons[2],
-        date: '09/11 09:21'
-      });
-      this.items.push({
-        author: 'Marco dal Backoffice',
-        note: 'Fac-Simile foto tesserino.jpg',
-        icon: this.icons[1],
-        date: '09/11 09:14'
-      });
-      this.items.push({
-        author: 'Anita dal Backoffice',
-        note: 'Guida generale Banca Sella.pdf',
-        icon: this.icons[2],
-        date: '08/11 11:11'
-      });
-      this.items.push({
-        author: 'Anita dal Backoffice',
-        note: 'Documento di benvenuto.png',
-        icon: this.icons[1],
-        date: '08/11 11:10'
-      });
-      this.items.push({
-        author: 'Anita dal Backoffice',
-        note: 'Richiesta di assunzione.pdf',
-        icon: this.icons[2],
-        date: '08/11 10:13'
-      });
+  // Upload Task
+  task: AngularFireUploadTask;
+
+  // Progress in percentage
+  percentage: Observable<number>;
+
+  // Snapshot of uploading file
+  snapshot: Observable<any>;
+
+  // Uploaded File URL
+  UploadedFileURL: Observable<string>;
+
+  // Uploaded Image List
+  images: Observable<MyData[]>;
+
+  // File details
+  fileName: string;
+  fileSize: number;
+  date: string = new Date().toISOString();
+
+
+  // Status check
+  isUploading: boolean;
+  isUploaded: boolean;
+
+  private imageCollection: AngularFirestoreCollection<MyData>;
+
+  constructor(public alertCtrl: AlertController, private storage: AngularFireStorage, private database: AngularFirestore) {
+                this.isUploading = false;
+                this.isUploaded = false;
+                console.log();
+                // Set collection where our documents/ images info will save
+                this.imageCollection = database.collection<MyData>('testcollect');
+                this.images = this.imageCollection.valueChanges();
   }
   async doConfirmDocument() {
     const confirm = this.alertCtrl.create({
@@ -99,6 +96,75 @@ export class Tab3Page {
       ]
     });
     (await confirm).present();
+  }
+
+  uploadFile(event: FileList) {
+
+
+    // The File object
+    const file = event.item(0);
+
+    /* Validation for Images Only
+    if (file.type.split('/')[0] !== 'image') {
+     console.error('unsupported file type :( ');
+     return;
+    }
+*/
+    this.isUploading = true;
+    this.isUploaded = false;
+
+    this.fileName = file.name;
+
+    // The storage path
+    const path = `testcollect/${new Date().getTime()}_${file.name}`;
+
+    // Totally optional metadata
+    const customMetadata = { app: 'testcollect Upload Demo' };
+
+    // File reference
+    const fileRef = this.storage.ref(path);
+
+    // The main task
+    this.task = this.storage.upload(path, file, { customMetadata });
+
+    // Get file progress percentage
+    this.percentage = this.task.percentageChanges();
+    this.snapshot = this.task.snapshotChanges().pipe(
+
+      finalize(() => {
+        // Get uploaded file storage path
+        this.UploadedFileURL = fileRef.getDownloadURL();
+
+        this.UploadedFileURL.subscribe(resp => {
+          this.addImagetoDB({
+            name: file.name,
+            filepath: resp,
+            size: this.fileSize,
+            date: this.date
+          });
+          this.isUploading = false;
+          this.isUploaded = true;
+        }, error => {
+          console.error(error);
+        });
+      }),
+      tap(snap => {
+          this.fileSize = snap.totalBytes;
+      })
+    );
+  }
+
+
+  addImagetoDB(image: MyData) {
+    // Create an ID for document
+    const id = this.database.createId();
+
+    // Set document id with value in database
+    this.imageCollection.doc(id).set(image).then(resp => {
+      console.log(resp);
+    }).catch(error => {
+      console.log('error ' + error);
+    });
   }
 }
 

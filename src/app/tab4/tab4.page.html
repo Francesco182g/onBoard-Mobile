@@ -12,18 +12,19 @@
   <ion-content>
 
     <ion-list>
-    <ion-item color="secondary" text-center *ngFor="let item of announces | async"  target="_blank" rel="noopener">
+    <ion-item text-center *ngFor="let item of announces | async"  target="_blank" rel="noopener">
         <ion-icon slot="start" name="alert"></ion-icon>
         <ion-item-sliding >
-          <ion-label>
-          <h2>{{item.titolo}}</h2>
-          <p>{{item.descrizione}}</p>
+          <ion-label color="primary">
+          <ion-text slot="start">{{item.titolo}}</ion-text>
         </ion-label>
         <ion-note slot="end">
+          {{item.descrizione}}
         </ion-note>
       </ion-item-sliding>
       </ion-item>
     </ion-list>
+    <!--
     <ion-button (click)="single_notification()">
       Single Notification
     </ion-button>
@@ -35,6 +36,7 @@
     <ion-button (click)="delayed_notification()">
       Delayed Notification
     </ion-button>
+    -->
   </ion-content>
   
     

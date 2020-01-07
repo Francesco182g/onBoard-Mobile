@@ -11,7 +11,7 @@
  <ion-content>
 
   <ion-list>
-  <ion-item color="medium" text-center *ngFor="let item of images | async" [href]="item.filepath" target="_blank" rel="noopener">
+  <ion-item text-center *ngFor="let item of images | async" [href]="item.filepath" target="_blank" rel="noopener">
       <ion-thumbnail slot="start">  <img [src]="item.filepath" /> </ion-thumbnail>
       <ion-item-sliding >
         <ion-label>

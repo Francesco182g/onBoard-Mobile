@@ -13,52 +13,71 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding class="settingsPage">
-  <ion-list color="primary">
-   <ion-item no-lines>
-     <ion-label>Guida e Feedback</ion-label>
-     <ion-toggle color="secondary"
-       [ngModel]='preferences[PREF_DISCOVERABLE]'
-       (ionChange)='changePreference($event, PREF_DISCOVERABLE)'></ion-toggle>
-   </ion-item>
-    <ion-list-header>
-       Generali
-    </ion-list-header>
-    <ion-item no-lines>
-      <ion-label>Test1</ion-label>
-      <ion-toggle color="secondary"
-        [ngModel]='preferences[PREF_DISCOVERABLE]'
-        (ionChange)='changePreference($event, PREF_DISCOVERABLE)'></ion-toggle>
-    </ion-item>
-    <ion-list-header>
-       Notifiche
-    </ion-list-header>
-    <ion-item>
-      <ion-label>Notifications for Messages</ion-label>
-      <ion-toggle color="secondary"
-        [ngModel]='preferences[PREF_NOTIFY_MESSAGES]'
-        (ionChange)='changePreference($event, PREF_NOTIFY_MESSAGES)'></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label>Notifications for Invites</ion-label>
-      <ion-toggle color="secondary"
-        [ngModel]='preferences[PREF_NOTIFY_INVITES]'
-        (ionChange)='changePreference($event, PREF_NOTIFY_INVITES)'></ion-toggle>
-    </ion-item>
-    <ion-list-header>
-      Aspetto
-   </ion-list-header>
-   <ion-item no-lines>
-     <ion-label>Dark/Light Mode</ion-label>
-     <ion-toggle color="secondary" (click)="ThemeSwitcher()"></ion-toggle>
-   </ion-item>
-    <ion-list-header>
-       Account
-    </ion-list-header>
-    <button ion-item (click)="logout()">
-      Log Out
-    </button>
-  </ion-list>
-  
-</ion-content>
+<ion-content fullscreen>
+  <ion-list no-border>
 
+    <ion-item>
+      <ion-icon name='help-circle' slot="start"></ion-icon>
+      Guida e feedback
+      <ion-text slot="end">
+      </ion-text>
+    </ion-item>
+
+    <ion-list-header>
+      Generali
+    </ion-list-header>
+
+    <ion-item>
+      <ion-icon name='notifications' color='primary' slot="start"></ion-icon>
+      Notifiche
+      <ion-text slot="end">
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='cloud-upload' color='primary' slot="start"></ion-icon>
+      Upload 
+      <ion-text slot="end">
+        Rete Cellulare & Wifi
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='cloud-download' color='primary' slot="start"></ion-icon>
+      Download 
+      <ion-text slot="end">
+        Rete Cellulare & Wifi
+      </ion-text>
+    </ion-item>
+
+
+    <ion-list-header >
+      Aspetto
+    </ion-list-header >
+
+    <ion-item>
+      <ion-icon name='contrast' slot="start"></ion-icon>
+        Tema Chiaro/Scuro
+      <ion-toggle color="primary" (click)="ThemeSwitcher()" slot="end"></ion-toggle>
+    </ion-item>
+
+    <ion-list-header>
+      Account
+    </ion-list-header>
+
+    <ion-item>
+      <ion-icon name='exit' color='danger' slot="start"></ion-icon>
+      Logout
+      <ion-text slot="end">
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='contact' color='primary' slot="start"></ion-icon>
+      Modifica Profilo
+      <ion-text slot="end">
+      </ion-text>
+    </ion-item>
+
+</ion-list>
+</ion-content>

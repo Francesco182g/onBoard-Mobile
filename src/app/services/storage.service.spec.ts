@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MongoConnectService } from './mongo-connect.service';
+import { StorageService } from './storage.service';
 
-describe('MongoConnectService', () => {
+describe('StorageService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: MongoConnectService = TestBed.get(MongoConnectService);
+    const service: StorageService = TestBed.get(StorageService);
     expect(service).toBeTruthy();
   });
 });

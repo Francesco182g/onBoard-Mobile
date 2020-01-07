@@ -13,11 +13,52 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <span>Light</span>
-  <label class="switch">
-    <input type="checkbox" (click)="toggle()" >
-    <span class="slider round"></span>
-  </label>
-  <span>Dark</span>
+<ion-content padding class="settingsPage">
+  <ion-list color="primary">
+   <ion-item no-lines>
+     <ion-label>Guida e Feedback</ion-label>
+     <ion-toggle color="secondary"
+       [ngModel]='preferences[PREF_DISCOVERABLE]'
+       (ionChange)='changePreference($event, PREF_DISCOVERABLE)'></ion-toggle>
+   </ion-item>
+    <ion-list-header>
+       Generali
+    </ion-list-header>
+    <ion-item no-lines>
+      <ion-label>Test1</ion-label>
+      <ion-toggle color="secondary"
+        [ngModel]='preferences[PREF_DISCOVERABLE]'
+        (ionChange)='changePreference($event, PREF_DISCOVERABLE)'></ion-toggle>
+    </ion-item>
+    <ion-list-header>
+       Notifiche
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Notifications for Messages</ion-label>
+      <ion-toggle color="secondary"
+        [ngModel]='preferences[PREF_NOTIFY_MESSAGES]'
+        (ionChange)='changePreference($event, PREF_NOTIFY_MESSAGES)'></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Notifications for Invites</ion-label>
+      <ion-toggle color="secondary"
+        [ngModel]='preferences[PREF_NOTIFY_INVITES]'
+        (ionChange)='changePreference($event, PREF_NOTIFY_INVITES)'></ion-toggle>
+    </ion-item>
+    <ion-list-header>
+      Aspetto
+   </ion-list-header>
+   <ion-item no-lines>
+     <ion-label>Dark/Light Mode</ion-label>
+     <ion-toggle color="secondary" (click)="ThemeSwitcher()"></ion-toggle>
+   </ion-item>
+    <ion-list-header>
+       Account
+    </ion-list-header>
+    <button ion-item (click)="logout()">
+      Log Out
+    </button>
+  </ion-list>
+  
 </ion-content>
+

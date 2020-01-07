@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+
 
 export interface Announce {
-  title: string;
-  description: string;
+  descrizione: string;
+  titolo: string;
 }
 
 @Component({
@@ -15,14 +17,48 @@ export interface Announce {
 
 export class Tab4Page {
 
-  private annonunceCollection: AngularFirestoreCollection<Announce>;
+  annonunceCollection: AngularFirestoreCollection<Announce>;
   announces: Observable<Announce[]>;
-  UploadedFileURL: Observable<string>;
 
-  constructor(private database: AngularFirestore) {
-    this.annonunceCollection = database.collection<Announce>('annunci');
+  constructor(private database: AngularFirestore, private localNotifications: LocalNotifications) {
+    this.annonunceCollection = database.collection<Announce>('annunci', ref => ref.orderBy('titolo', 'asc'));
     this.announces = this.annonunceCollection.valueChanges();
-    
+    console.log(this.announces);
+  }
+  single_notification() {
+    // Schedule a single notification
+    this.localNotifications.schedule({
+      id: 1,
+      text: 'Single ILocalNotification',
+      sound: 'file://sound.mp3',
+      data: { secret: 'key_data' }
+    });
+  }
+
+
+  multi_notification() {
+    // Schedule multiple notifications
+    this.localNotifications.schedule([{
+      id: 1,
+      text: 'Multi ILocalNotification 1',
+      sound: 'file://sound.mp3',
+      data: { secret: 'key_data' }
+    }, {
+      id: 2,
+      title: 'Local ILocalNotification Example',
+      text: 'Multi ILocalNotification 2',
+      icon: 'http://example.com/icon.png'
+    }]);
+  }
+
+  delayed_notification() {
+    // Schedule delayed notification
+    this.localNotifications.schedule({
+      text: 'Delayed ILocalNotification',
+      trigger: { at: new Date(new Date().getTime() + 3600) },
+      led: 'FF0000',
+      sound: null
+    });
   }
 
 }

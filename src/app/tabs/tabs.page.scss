@@ -1,23 +1,11 @@
-
-
-@media (prefers-color-scheme: light) {
-  ion-toolbar {
-    --background: white;
-    color: black;
-  }
-  .verticalScrollContainer {
-    background: white;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  ion-toolbar {
-    --background: black;
-    color: black;
-  }
-  .verticalScrollContainer {
-    background: black;
-  }
+@import url(../theme.scss);
+p,
+ion-label,
+ion-item,
+ion-icon,
+ion-title,
+button {
+  color: var(--darkToLight) !important;
 }
 
 .my-custom-menu {

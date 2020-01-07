@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
+
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { ThemeService } from './theme/theme.service';
+import { ThemeService } from './theme.service';
 
 @Component({
   selector: 'app-root',
@@ -36,9 +37,9 @@ export class AppComponent {
       icon: 'notifications'
     },
     {
-      title: 'Profilo',
+      title: 'Calendario',
       url: '/tabs/tab5',
-      icon: 'person'
+      icon: 'calendar'
     },
     {
       title: 'Impostazioni',
@@ -51,7 +52,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private themeService: ThemeService
+    private themeSwitcher: ThemeService,
   ) {
     this.initializeApp();
   }
@@ -61,6 +62,18 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  ThemeSwitcher() {
+    // 0 = day mode
+    // 1 = night mode
+    if (this.themeSwitcher.currentTheme === 0) {
+      this.themeSwitcher.setTheme('night');
+      this.themeSwitcher.currentTheme = 1;
+    } else {
+      this.themeSwitcher.setTheme('day');
+      this.themeSwitcher.currentTheme = 0;
+    }
   }
 
 }

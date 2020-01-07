@@ -20,9 +20,12 @@ import { AngularFireModule } from '@angular/fire/';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import {ThemeModule} from './theme/theme.module';
-import { lightTheme } from './theme/light-theme';
-import { darkTheme } from './theme/dark-theme';
+import { NgCalendarModule  } from 'ionic2-calendar';
+
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+
+import { PreferencesService } from './services/preferences.service';
+import { StorageService } from './services/storage.service';
 
 import * as firebase from 'firebase';
 
@@ -40,17 +43,17 @@ firebase.initializeApp(environment.firebase);
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireStorageModule,
+    NgCalendarModule,
     ReactiveFormsModule,
-    ThemeModule.forRoot({
-      themes: [lightTheme, darkTheme],
-      active: 'light'
-    })
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AuthenticationService,
+    PreferencesService,
+    StorageService,
     AngularFirestore,
+    LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

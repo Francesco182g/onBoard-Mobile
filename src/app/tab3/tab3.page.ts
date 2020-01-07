@@ -56,6 +56,7 @@ export class Tab3Page {
                 this.imageCollection = database.collection<MyData>('testcollect');
                 this.images = this.imageCollection.valueChanges();
   }
+  /*
   async doConfirmDocument() {
     const confirm = this.alertCtrl.create({
       message: 'Sei sicuro di voler caricare il file?',
@@ -97,7 +98,7 @@ export class Tab3Page {
     });
     (await confirm).present();
   }
-
+*/
   uploadFile(event: FileList) {
 
 

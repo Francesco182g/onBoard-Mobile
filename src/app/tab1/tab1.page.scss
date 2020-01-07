@@ -1,3 +1,20 @@
+@import url(../theme.scss);
+
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+p,
+ion-card-subtitle,
+ion-card-title,
+ion-label,
+ion-item,
+ion-title,
+button {
+  color: var(--darkToLight) !important;
+}
+
 .welcome-card img {
   max-height: 35vh;
   overflow: hidden;

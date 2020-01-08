@@ -13,14 +13,17 @@
   <ion-list>
   <ion-item text-center *ngFor="let item of images | async" [href]="item.filepath" target="_blank" rel="noopener">
       <ion-thumbnail slot="start">  <img [src]="item.filepath" /> </ion-thumbnail>
-      <ion-item-sliding >
-        <ion-label>
+      <ion-item-sliding>
+        <ion-label color="primary">
         <h2>{{ item.name }}</h2>
+        <h3>{{ item.descrizione }}</h3>
         <p>Caricato da Anna il {{item.date}}</p>
-      </ion-label>
-      <ion-note slot="end">
-      </ion-note>
-    </ion-item-sliding>
+        <ion-note *ngIf="item.approval==0"><ion-icon name="cloud-circle" color="primary"></ion-icon>Da backoffice</ion-note>
+        <ion-note *ngIf="item.approval==1"><ion-icon name="radio-button-on" color="warning"></ion-icon>In Esame</ion-note>       
+        <ion-note *ngIf="item.approval==2"><ion-icon name="radio-button-on" color="danger"></ion-icon>Non Approvato</ion-note>      
+        <ion-note *ngIf="item.approval==3"><ion-icon name="radio-button-on" color="success"></ion-icon>Approvato</ion-note>
+        </ion-label>
+        </ion-item-sliding>
     </ion-item>
   </ion-list>
 
@@ -29,14 +32,17 @@
         <ion-card-title>Carica un File...</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <div class="fileUpload btn btn-primary">
-          <span>Upload</span>
-          <input
+        <ion-textarea placeholder="Inserisci descrizione"></ion-textarea>
+        <div class="fileUpload btn btn-primary"><
+          <ion-label color="danger">
+          <ion-input color="primary"
             id="uploadBtn"
             type="file"
             class="upload"
             (change)="uploadFile($event.target.files)"
-          />
+          >
+          </ion-input>
+        </ion-label>
         </div>
       </ion-card-content>
     </ion-card>

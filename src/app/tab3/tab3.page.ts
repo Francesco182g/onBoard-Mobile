@@ -4,13 +4,15 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { FileSizePipe } from '../file-size.pipe';
 
 export interface MyData {
   name: string;
+  descrizione: string;
+  user: string;
   filepath: string;
   size: number;
   date: string;
+  approval: number;
 }
 
 @Component({
@@ -40,7 +42,9 @@ export class Tab3Page {
   fileName: string;
   fileSize: number;
   date: string = new Date().toISOString();
-
+  approval: number;
+  descrizione: string;
+  user: string;
 
   // Status check
   isUploading: boolean;
@@ -114,7 +118,13 @@ export class Tab3Page {
     this.isUploading = true;
     this.isUploaded = false;
 
+    // Boolean Flag pre approval Document
+    this.approval = 1;
+
+    // File Name
     this.fileName = file.name;
+
+    this.user = '';
 
     // The storage path
     const path = `testcollect/${new Date().getTime()}_${file.name}`;
@@ -131,7 +141,6 @@ export class Tab3Page {
     // Get file progress percentage
     this.percentage = this.task.percentageChanges();
     this.snapshot = this.task.snapshotChanges().pipe(
-
       finalize(() => {
         // Get uploaded file storage path
         this.UploadedFileURL = fileRef.getDownloadURL();
@@ -139,9 +148,12 @@ export class Tab3Page {
         this.UploadedFileURL.subscribe(resp => {
           this.addImagetoDB({
             name: file.name,
+            descrizione: this.descrizione,
+            user: this.user,
             filepath: resp,
             size: this.fileSize,
-            date: this.date
+            date: this.date,
+            approval: this.approval
           });
           this.isUploading = false;
           this.isUploaded = true;
@@ -159,7 +171,7 @@ export class Tab3Page {
   addImagetoDB(image: MyData) {
     // Create an ID for document
     const id = this.database.createId();
-
+    this.descrizione = 'giuseppe';
     // Set document id with value in database
     this.imageCollection.doc(id).set(image).then(resp => {
       console.log(resp);

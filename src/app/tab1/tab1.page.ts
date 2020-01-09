@@ -12,13 +12,13 @@ export class Tab1Page implements OnInit {
   userEmail: string;
 
   constructor(public router: Router, private authService: AuthenticationService) {
-    console.log(this.userEmail);
+    // console.log(this.userEmail);
     this.userEmail = this.authService.userDetails().email;
   }
 
   ngOnInit() {
     if (this.authService.userDetails()) {
-      console.log(this.userEmail);
+     console.log(this.userEmail);
     } else {
       this.router.navigate(['login']);
     }

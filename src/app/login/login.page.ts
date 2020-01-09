@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   constructor(
     private navCtrl: Router,
     private authService: AuthenticationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) { }
 
    // tslint:disable-next-line: variable-name
@@ -45,7 +45,9 @@ export class LoginPage implements OnInit {
      ])),
    });
  }
+
  loginUser(value) {
+
    this.authService.loginUser(value)
    .then(res => {
      console.log(res);

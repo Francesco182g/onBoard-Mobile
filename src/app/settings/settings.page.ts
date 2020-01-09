@@ -19,11 +19,13 @@ export class SettingsPage {
   authService: any;
   router: any;
 
+  user: string;
+
   constructor(public nav: NavController, public preferencesService: PreferencesService,
-              public auth: AuthenticationService,  private themeSwitcher: ThemeService
+              public auth: AuthenticationService,  private themeSwitcher: ThemeService,
     ) {
     this.preferences = {};
-
+    this.user = this.auth.userDetails().email;
     this.PREF_DISCOVERABLE = PreferencesService.PREF_DISCOVERABLE;
     this.PREF_NOTIFY_MESSAGES = PreferencesService.PREF_NOTIFY_MESSAGES;
     this.PREF_NOTIFY_INVITES = PreferencesService.PREF_NOTIFY_INVITES;

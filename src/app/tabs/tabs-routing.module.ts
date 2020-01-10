@@ -71,6 +71,28 @@ const routes: Routes = [
       }
       ,
       {
+        path: 'suggestion',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../suggestion/suggestion.module').then(m => m.SuggestionPageModule)
+          }
+        ]
+      }
+      ,
+      {
+        path: 'calendar',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../calendar/calendar.module').then(m => m.CalendarPageModule)
+          }
+        ]
+      }
+      ,
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

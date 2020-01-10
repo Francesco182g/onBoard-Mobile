@@ -4,38 +4,33 @@
             <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title>
-        Mappa
+        Eventi e Colloqui
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-      <agm-map [latitude]="lat" [longitude]="lng">
-          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-        </agm-map>
-
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
   <ion-card>
     <ion-card-content>
       <ion-card-title>
-        SellaMap
+        InSella-Eventi 
       </ion-card-title>
       <p>
-        Attraverso i tasti direzionali puoi cercare punti di interesse oppure la sede del colloquio di lavoro.
+        Cliccando sull'evento si aprirà il tuo gestore di mappe che ti guiderà verso sede dell'incontro.
       </p>
-    </ion-card-content>
-
-    <ion-item>
-      <ion-icon name='navigate' item-start style="color: #d03e84"></ion-icon>
-      Sede di Lavoro Banca Sella dalla tua posizione
-      <ion-badge slot="end">12 km</ion-badge>
+    <ion-item *ngFor="let item of items | async">
+      <ion-icon slot="start" name='navigate' item-start style="color: #55acee"></ion-icon>
+      <ion-label (click)="goTo(item.indirizzo)">
+        <h2>Incontro il: </h2>
+        <h3>{{item.data}} alle {{item.ora}}</h3>
+        <p>presso {{item.indirizzo}}</p>
+        <p slot="end"><ion-badge slot="end">Naviga Verso</ion-badge></p>
+      </ion-label>
     </ion-item>
-
-    <ion-item>
-      <ion-icon name='navigate' item-start style="color: #55acee"></ion-icon>
-      Sede generale Banca Sella
-      <ion-badge slot="end">260 km</ion-badge>
-    </ion-item>
-
+  </ion-card-content>
   </ion-card>
 
 

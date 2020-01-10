@@ -15,7 +15,6 @@
 
 <ion-content fullscreen>
   <ion-list no-border>
-
     <ion-item>
       <ion-icon name='help-circle' slot="start"></ion-icon>
       Guida e feedback
@@ -27,14 +26,14 @@
       Generali
     </ion-list-header>
 
-    <ion-item>
+    <ion-item (click)="notActive('Impostazione Notifica')">
       <ion-icon name='notifications' color='primary' slot="start"></ion-icon>
       Notifiche
       <ion-text slot="end">
       </ion-text>
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="notActive('Impostazione Upload')">
       <ion-icon name='cloud-upload' color='primary' slot="start"></ion-icon>
       Upload 
       <ion-text slot="end">
@@ -42,7 +41,7 @@
       </ion-text>
     </ion-item>
 
-    <ion-item>
+    <ion-item  (click)="notActive('Impostazione Download')">
       <ion-icon name='cloud-download' color='primary' slot="start"></ion-icon>
       Download 
       <ion-text slot="end">
@@ -65,14 +64,14 @@
       Account
     </ion-list-header>
 
-    <ion-item>
+    <ion-item (click)="logout()">
       <ion-icon name='exit' color='danger' slot="start"></ion-icon>
       Logout
       <ion-text slot="end">
       </ion-text>
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="notActive('Impostazione Download')">
       <ion-icon name='contact' color='primary' slot="start"></ion-icon>
       Modifica Profilo
       <ion-text slot="end">

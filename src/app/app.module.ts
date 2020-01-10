@@ -23,8 +23,9 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
-import { PreferencesService } from './services/preferences.service';
 import { StorageService } from './services/storage.service';
+import { Storage, IonicStorageModule } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 import * as firebase from 'firebase';
 
@@ -33,14 +34,13 @@ firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBY5n7Tn4bgV_LXKcQszmq8ovrpIwV2XIw'
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFireStorageModule,
     AngularFireStorageModule,
     NgCalendarModule,
     ReactiveFormsModule,
@@ -49,9 +49,9 @@ firebase.initializeApp(environment.firebase);
     StatusBar,
     SplashScreen,
     AuthenticationService,
-    PreferencesService,
     StorageService,
     AngularFirestore,
+    InAppBrowser,
     LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

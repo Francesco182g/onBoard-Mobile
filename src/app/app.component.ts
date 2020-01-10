@@ -5,6 +5,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ThemeService } from './theme.service';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,9 @@ import { ThemeService } from './theme.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
+  userEmail: string;
+
   title = 'SellaMap';
   lat = 51.678418;
   lng = 7.809007;
@@ -38,13 +42,23 @@ export class AppComponent {
     },
     {
       title: 'Calendario',
-      url: '/tabs/tab5',
+      url: '/tabs/calendar',
       icon: 'calendar'
+    },
+    {
+      title: 'Profilo',
+      url: '/tabs/tab5',
+      icon: 'contact'
     },
     {
       title: 'Impostazioni',
       url: '/tabs/settings',
       icon: 'settings'
+    },
+    {
+      title: 'Suggerimenti',
+      url: '/tabs/suggestion',
+      icon: 'suggestion'
     },
   ];
 
@@ -54,6 +68,13 @@ export class AppComponent {
     private statusBar: StatusBar,
     private themeSwitcher: ThemeService,
   ) {
+    console.log('ok');
+    /*
+    if (this.authService.userDetails() !== 'undefined') {
+      console.log('nonok');
+      this.userEmail = this.authService.userDetails().email;
+    }
+    */
     this.initializeApp();
   }
 

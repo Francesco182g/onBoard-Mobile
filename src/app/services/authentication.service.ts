@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
+import { Storage } from '@ionic/storage';
+import { Platform } from '@ionic/angular';
 
 @Injectable()
 export class AuthenticationService {
 
-  constructor() { }
+  constructor(private storage: Storage, private platform: Platform) { }
+
   loginUser(value) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.password)
@@ -19,7 +22,8 @@ export class AuthenticationService {
        if (firebase.auth().currentUser) {
          firebase.auth().signOut()
          .then(() => {
-           console.log('LOG Out');
+           console.log('Logout');
+           this.tokenOut();
            resolve();
          }).catch((error) => {
            reject();
@@ -31,5 +35,10 @@ export class AuthenticationService {
    userDetails() {
     console.log('Login Success ' + firebase.auth().currentUser);
     return firebase.auth().currentUser;
+   }
+
+   tokenOut() {
+    this.storage.set('TOKEN_FIRE', null);
+    this.storage.set('TOKEN_USER', null);
    }
 }

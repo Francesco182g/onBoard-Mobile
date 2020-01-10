@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { NavController } from '@ionic/angular';
-import { PreferencesService } from '../services/preferences.service';
-import { LoginPage } from '../login/login.page';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import { ThemeService } from '../theme.service';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-settings',
@@ -12,38 +11,23 @@ import { ThemeService } from '../theme.service';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage {
-  public preferences: any;
-  public PREF_DISCOVERABLE: string;
-  public PREF_NOTIFY_MESSAGES: string;
-  public PREF_NOTIFY_INVITES: string;
-  authService: any;
-  router: any;
-
   user: string;
+  prefTheme: boolean;
 
-  constructor(public nav: NavController, public preferencesService: PreferencesService,
+  constructor(public router: Router,
               public auth: AuthenticationService,  private themeSwitcher: ThemeService,
+              public alertCtrl: AlertController
     ) {
-    this.preferences = {};
     this.user = this.auth.userDetails().email;
-    this.PREF_DISCOVERABLE = PreferencesService.PREF_DISCOVERABLE;
-    this.PREF_NOTIFY_MESSAGES = PreferencesService.PREF_NOTIFY_MESSAGES;
-    this.PREF_NOTIFY_INVITES = PreferencesService.PREF_NOTIFY_INVITES;
   }
 
-  public ionViewWillEnter() {
-    this.preferences[PreferencesService.PREF_DISCOVERABLE]
-      = this.preferencesService.getPreference(PreferencesService.PREF_DISCOVERABLE);
-    this.preferences[PreferencesService.PREF_NOTIFY_MESSAGES]
-      = this.preferencesService.getPreference(PreferencesService.PREF_NOTIFY_MESSAGES);
-    this.preferences[PreferencesService.PREF_NOTIFY_INVITES]
-      = this.preferencesService.getPreference(PreferencesService.PREF_NOTIFY_INVITES);
-  }
-
-  public changePreference(event, key) {
-    this.preferencesService.setPreference(key, event.checked);
-    if (key === this.PREF_DISCOVERABLE) {
-    }
+  async notActive(message) {
+    const alert = await this.alertCtrl.create({
+      header: message + ' Non attiva',
+      message: 'Questa funzionalità non è ancora attiva, la implementeremo a breve',
+      buttons: ['Conferma']
+    });
+    alert.present();
   }
 
   ThemeSwitcher() {
@@ -56,14 +40,15 @@ export class SettingsPage {
       this.themeSwitcher.setTheme('day');
       this.themeSwitcher.currentTheme = 0;
     }
+    // this.storage.setBooleanElement('prefTheme', this.prefTheme);
   }
 
   logout() {
-    this.authService.logoutUser()
+    this.auth.logoutUser()
     .then(res => {
       console.log(res);
       this.router.navigate(['login']);
-    })
+        })
     .catch(error => {
       console.log(error);
     });

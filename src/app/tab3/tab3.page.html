@@ -9,23 +9,31 @@
     </ion-toolbar>
   </ion-header>
  
-  <ion-content>
-  <ion-list>
-  <ion-item text-center *ngFor="let item of images | async" [href]="item.filepath" target="_blank" rel="noopener">
-      <ion-thumbnail slot="start">  <img [src]="item.filepath" /> </ion-thumbnail>
-      <ion-item-sliding>
-        <ion-label color="primary">
+  <ion-content padding="true">
+<ion-list>
+  <ion-item-sliding *ngFor="let item of images | async">
+    <ion-item (click)="openFile(item.filepath)">
+    <ion-thumbnail slot="start" *ngIf="item.type=='image'">  <img [src]="item.filepath" /> </ion-thumbnail>
+      <ion-thumbnail slot="start" *ngIf="item.type=='application'"> <img src="assets/document.png" /> </ion-thumbnail>
+      <ion-label color="primary">
         <h2>{{ item.name }}</h2>
         <p slot="start">{{item.description}}</p>
         <p>Caricato da {{item.user}} il {{item.date}}</p>
-        <ion-badge *ngIf="item.approval==0"><ion-icon name="cloud-circle" color="primary"></ion-icon>Da backoffice</ion-badge>
-        <ion-badge *ngIf="item.approval==1"><ion-icon name="radio-button-on" color="warning"></ion-icon>In Esame</ion-badge>       
-        <ion-badge *ngIf="item.approval==2"><ion-icon name="radio-button-on" color="danger"></ion-icon>Non Approvato</ion-badge>      
-        <ion-badge *ngIf="item.approval==3"><ion-icon name="radio-button-on" color="success"></ion-icon>Approvato</ion-badge>
-        </ion-label>
-        </ion-item-sliding>
+        <ion-badge text-center *ngIf="item.approval==0"><ion-icon name="cloud-circle" color="primary"></ion-icon>Da backoffice</ion-badge>
+        <ion-badge text-center *ngIf="item.approval==1"><ion-icon name="radio-button-on" color="warning"></ion-icon>In Esame</ion-badge>       
+        <ion-badge text-center *ngIf="item.approval==2"><ion-icon name="radio-button-on" color="danger"></ion-icon>Non Approvato</ion-badge>      
+        <ion-badge text-center *ngIf="item.approval==3"><ion-icon name="radio-button-on" color="success"></ion-icon>Approvato</ion-badge>
+      </ion-label>
+
+      <ion-item-options>
+        <ion-item-option color="danger" (click)="showAnnounce('La cancellazione non è consentita, conttare il backoffice per cancellare un file!')">
+          <ion-icon slot="top" name="archive"></ion-icon>
+          Cancella
+        </ion-item-option>
+      </ion-item-options>
     </ion-item>
-  </ion-list>
+  </ion-item-sliding>
+  <ion-list>
 
     <ion-card text-center *ngIf="!isUploading && !isUploaded">
       <ion-card-header>
@@ -80,10 +88,10 @@
     </ion-card>
 
     <ion-card text-center *ngIf="!isUploading && isUploaded">
+
       <ion-card-header>
         <ion-card-content>
           <div *ngIf="UploadedFileURL | async as url">
-            <img [src]="url" />
             <a [href]="url" target="_blank" rel="noopener">Download</a>
           </div>
           File Size: {{ fileSize | fileSize }}

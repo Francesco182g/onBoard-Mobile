@@ -1,45 +1,49 @@
 import {Injectable} from '@angular/core';
 import { Storage} from '@ionic/storage';
 import { User } from 'firebase';
+import { Utente } from '../login/login.page';
 
 
 @Injectable()
 export class StorageService {
   public storage: Storage;
 
+    // bean User
+    utente: Utente = {
+      email: '',
+      nome: '',
+      cognome: '',
+      datanascita: '',
+      codice_fiscale: '',
+      sesso: '',
+      cittàNascita: '',
+      indirizzo: '',
+
+    };
+
   constructor() {
   }
 
-  setStringElement(key: string, value: string) {
-    // set a key/value
-    this.storage.set(key, value);
+  checkToken(token) {
+    this.storage.get(token).then( res => {
+      if (res) {
+        console.log('AutoLogin');
+        return true;
+      } else {
+        return false;
+      }
+    });
   }
 
-  setElement(key: string, value: User) {
-    // set a key/value
-    this.storage.set(key, value);
-  }
-
-  setBooleanElement(key: string, value: boolean) {
-    // set a key/value
-    this.storage.set(key, value);
-  }
-
-  getElement(tag: string) {
-  // Or to get a key/value pair
-  console.log(this.storage.get(tag));
-  this.storage.get(tag).then((val) => {
-    console.log('Element: ', val);
-    return val;
-  });
-  }
-
-  remove(key: string) {
-    this.storage.remove(key)
-      .then(
-        data => console.log(data),
-        error => console.error(error)
-      );
+  getUserInfo() {
+    this.storage.get('TOKEN_USER').then( res => {
+      if (res) {
+        console.log('Token user get');
+        this.utente = res;
+        return res;
+      }
+    });
+    return this.utente;
   }
 
 

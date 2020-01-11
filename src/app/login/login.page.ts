@@ -111,8 +111,9 @@ private user: string;
    });
  }
 
- setUserInfo(user) {
-  this.storage.set('TOKEN_USER', user);
+ setUserInfo(value) {
+   console.log(value);
+   this.storage.set('TOKEN_USER', value);
  }
 
  getUserInfo() {
@@ -122,11 +123,14 @@ private user: string;
         console.log('No such document!');
       } else {
         // console.log('Document data:', doc.data());
-        this.utente.email = doc.get('userEmail');
+        this.utente.email = this.user;
         this.utente.nome = doc.get('nome');
         this.utente.cognome = doc.get('cognome');
         this.utente.stato = doc.get('stato');
         this.utente.sesso = doc.get('sesso');
+        this.utente.datanascita = doc.get('datanascita');
+        this.utente.indirizzo = doc.get('indirizzo');
+        this.utente.codice_fiscale = doc.get('codice_fiscale');
         this.setUserInfo(this.utente);
       }
     })

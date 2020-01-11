@@ -1,7 +1,7 @@
-import { CalendarComponent } from 'ionic2-calendar/calendar';
-import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Utente } from '../login/login.page';
+import { Storage} from '@ionic/storage';
 import { AlertController } from '@ionic/angular';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-tab5',
@@ -10,11 +10,45 @@ import { formatDate } from '@angular/common';
 })
 export class Tab5Page implements OnInit {
 
-  constructor(private alertCtrl: AlertController) {
+
+    // bean User
+    utente: Utente = {
+      email: '',
+      nome: '',
+      cognome: '',
+      datanascita: '',
+      codice_fiscale: '',
+      sesso: '',
+      cittàNascita: '',
+      indirizzo: '',
+    };
+
+
+  constructor(private storage: Storage, public alertCtrl: AlertController) {
+    this.getUserInfo();
   }
 
   ngOnInit() {
   }
 
+  getUserInfo() {
+    this.storage.get('TOKEN_USER').then( res => {
+      if (res) {
+        console.log('Token user get');
+        console.log(res);
+        this.utente = res;
+        console.log(this.utente);
+      }
+    });
+  }
+
+  async showAnnounce(nome, descrizione) {
+    const alert = await this.alertCtrl.create({
+      header: nome,
+      message: descrizione,
+      buttons: ['Conferma']
+    });
+    alert.present();
+  }
 
 }

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "118601101443",
+    "firebase_url": "https://insella-1572788107578.firebaseio.com",
+    "project_id": "insella-1572788107578",
+    "storage_bucket": "insella-1572788107578.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118601101443:android:2ea49d7671beec9220ebb6",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118601101443-a4abhkn9ekjoo4v683pmk923nnvm4erl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJT524VhPAwZeign2C-47OPsy51Z91tZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118601101443-a4abhkn9ekjoo4v683pmk923nnvm4erl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

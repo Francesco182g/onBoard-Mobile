@@ -25,7 +25,6 @@ export interface MyData {
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-// Upload Code
 
   // Upload Task
   task: AngularFireUploadTask;
@@ -68,9 +67,9 @@ export class Tab3Page {
                 this.images = this.imageCollection.valueChanges();
   }
 
-  async showAnnounce(mes) {
+  async showAnnounce(name, mes) {
     const alert = await this.alertCtrl.create({
-      header: 'ATTENZIONE',
+      header: name,
       message: mes,
       buttons: ['Conferma']
     });

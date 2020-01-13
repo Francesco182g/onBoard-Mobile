@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Utente } from '../login/login.page';
 import { Storage} from '@ionic/storage';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab5',
@@ -24,7 +25,8 @@ export class Tab5Page implements OnInit {
     };
 
 
-  constructor(private storage: Storage, public alertCtrl: AlertController) {
+  constructor(private storage: Storage, public alertCtrl: AlertController ,
+              public router: Router) {
     this.getUserInfo();
   }
 
@@ -49,6 +51,10 @@ export class Tab5Page implements OnInit {
       buttons: ['Conferma']
     });
     alert.present();
+  }
+
+  openSettings() {
+    this.router.navigate(['tabs/settings']);
   }
 
 }

@@ -36,6 +36,7 @@ const routes: Routes = [
   loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule)
 },  { path: 'suggestion', loadChildren: './suggestion/suggestion.module#SuggestionPageModule' },
   { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarPageModule' },
+  { path: 'guide', loadChildren: './guide/guide.module#GuidePageModule' },
 
 ];
 @NgModule({

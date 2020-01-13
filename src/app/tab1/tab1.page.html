@@ -6,10 +6,6 @@
       <ion-title>
         InSella Dashboard
       </ion-title>
-      <ion-icon slot="end" name="notifications"></ion-icon>
-      <ion-buttons slot="end">
-          <ion-button></ion-button>
-        </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
@@ -70,11 +66,11 @@
       <ion-label>{{item.titolo}} </ion-label>
     </ion-item>
       </ion-list>
-
-        <ion-footer (click)="logout()">
-          <ion-toolbar color="secondary">
-            <ion-title>Log out</ion-title>
-          </ion-toolbar>
-        </ion-footer>
+      <ion-footer>
+        <ion-button expand="full" color="danger" (click)="logout()">
+          Logout
+        </ion-button>
+      </ion-footer>
 </ion-content>
+
 

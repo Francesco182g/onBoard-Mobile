@@ -15,7 +15,7 @@
 
 <ion-content fullscreen>
   <ion-list no-border>
-    <ion-item>
+    <ion-item (click)="notActive('Guida')">
       <ion-icon name='help-circle' slot="start"></ion-icon>
       Guida e feedback
       <ion-text slot="end">
@@ -71,7 +71,7 @@
       </ion-text>
     </ion-item>
 
-    <ion-item (click)="notActive('Impostazione Download')">
+    <ion-item (click)="notActive('Modifica Profilo')">
       <ion-icon name='contact' color='primary' slot="start"></ion-icon>
       Modifica Profilo
       <ion-text slot="end">

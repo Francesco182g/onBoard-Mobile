@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-
+import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -41,11 +40,6 @@ export class AppComponent {
       icon: 'notifications'
     },
     {
-      title: 'Calendario',
-      url: '/tabs/calendar',
-      icon: 'calendar'
-    },
-    {
       title: 'Profilo',
       url: '/tabs/tab5',
       icon: 'contact'
@@ -58,7 +52,11 @@ export class AppComponent {
     {
       title: 'Suggerimenti',
       url: '/tabs/suggestion',
-      icon: 'suggestion'
+      icon: 'chatbubbles'
+    },
+    {
+      title: 'Logout',
+      icon: 'exit'
     },
   ];
 
@@ -67,6 +65,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private themeSwitcher: ThemeService,
+    public router: Router,
+    private authService: AuthenticationService,
   ) {
     console.log('ok');
     /*
@@ -96,5 +96,17 @@ export class AppComponent {
       this.themeSwitcher.currentTheme = 0;
     }
   }
+
+  logout() {
+    this.authService.logoutUser()
+    .then(res => {
+      console.log(res);
+      this.router.navigate(['login']);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  }
+
 
 }

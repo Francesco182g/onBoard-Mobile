@@ -30,6 +30,7 @@ export class AuthenticationService {
          });
        }
      });
+     this.tokenOut();
    }
 
    userDetails() {

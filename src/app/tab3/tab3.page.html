@@ -12,7 +12,7 @@
   <ion-content padding="true">
 <ion-list>
   <ion-item-sliding *ngFor="let item of images | async">
-    <ion-item (click)="openFile(item.filepath)">
+      <ion-item (click)="openFile(item.filepath)">
     <ion-thumbnail slot="start" *ngIf="item.type=='image'">  <img [src]="item.filepath" /> </ion-thumbnail>
       <ion-thumbnail slot="start" *ngIf="item.type=='application'"> <img src="assets/document.png" /> </ion-thumbnail>
       <ion-label color="primary">
@@ -24,10 +24,9 @@
         <ion-badge text-center *ngIf="item.approval==2"><ion-icon name="radio-button-on" color="danger"></ion-icon>Non Approvato</ion-badge>      
         <ion-badge text-center *ngIf="item.approval==3"><ion-icon name="radio-button-on" color="success"></ion-icon>Approvato</ion-badge>
       </ion-label>
-
-      <ion-item-options>
-        <ion-item-option color="danger" (click)="showAnnounce('La cancellazione non è consentita, conttare il backoffice per cancellare un file!')">
-          <ion-icon slot="top" name="archive"></ion-icon>
+      <ion-item-options  (ionSwipe)="showAnnounce('Cancellazione ' + item.name + '', 'La cancellazione non è consentita, conttare il backoffice per cancellare un file!')">
+        <ion-item-option color="danger" >
+          <ion-icon slot="top" name="trash"></ion-icon>
           Cancella
         </ion-item-option>
       </ion-item-options>

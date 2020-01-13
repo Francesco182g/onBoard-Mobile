@@ -60,8 +60,14 @@
   <ion-button color='success' (click)="showAnnounce('Yammer','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Accedi a Yammer</ion-button>
   <ion-button (click)="showAnnounce('SellaNews','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Sella News</ion-button>
   <ion-button (click)="showAnnounce('Guida Utilizzo Moduli HR','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Guida Utilizzo Moduli HR</ion-button>
-  <ion-button color="medium" (click)="showAnnounce('Impostazioni','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Impostazioni InSella</ion-button>
+  <ion-button (click)="showAnnounce('Accesso a Day-Si','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Accesso a Day-Si</ion-button>
+  <ion-button (click)="showAnnounce('Portale Video','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Portale Video</ion-button>
+  <ion-button color="medium" (click)="openSettings()">Impostazioni InSella</ion-button>
 
+</ion-list>
+
+<ion-list align-items-center *ngIf="utente.stato==false">
+  <ion-button color="medium" (click)="openSettings()">Impostazioni InSella</ion-button>
 </ion-list>
 </ion-list>
 

@@ -1,0 +1,13 @@
+@import url(../theme.scss);
+p,
+ion-label,
+ion-item,
+ion-icon,
+ion-list-header,
+ion-card-title,
+ion-content,
+ion-card-content,
+ion-label,
+button {
+  color: var(--darkToLight) !important;
+}

@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HereMapComponent } from './here-map.component';
+import { GuidePage } from './guide.page';
 
-describe('HereMapComponent', () => {
-  let component: HereMapComponent;
-  let fixture: ComponentFixture<HereMapComponent>;
+describe('GuidePage', () => {
+  let component: GuidePage;
+  let fixture: ComponentFixture<GuidePage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HereMapComponent ],
+      declarations: [ GuidePage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HereMapComponent);
+    fixture = TestBed.createComponent(GuidePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

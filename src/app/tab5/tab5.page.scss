@@ -1,3 +1,16 @@
+@import url(../theme.scss);
+p,
+ion-label,
+ion-item,
+ion-icon,
+ion-list-header,
+h1,
+h2,
+h3,
+button {
+  color: var(--darkToLight) !important;
+}
+
 .profile-item {
     text-align: center;
   }

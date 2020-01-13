@@ -97,6 +97,7 @@ export class Tab1Page implements OnInit {
     this.showAnnounce('Suggerimenti', 'Inserisci un suggerimento per migliorare InSella :)');
     this.router.navigate(['tabs/suggestion']);
   }
+
   async showAnnounce(nome, descrizione) {
     const alert = await this.alertCtrl.create({
       header: nome,

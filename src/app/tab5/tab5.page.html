@@ -52,22 +52,22 @@
   <h3 color='primary'>Collegamenti Interni </h3>
   <ion-list>
   <ion-item color="danger" *ngIf="utente.stato==false">
-      Non è possibile visualizzare i collegamenti alle funzionalità di InSella poiché sei ancora in una fase di pre-assunzione :(
+      Non è possibile visualizzare i collegamenti alle funzionalità di onBoard poiché sei ancora in una fase di pre-assunzione :(
   </ion-item>
   <ion-list align-items-center *ngIf="utente.stato==true">
-  <ion-button (click)="showAnnounce('CaSella','Questa è una demo! I collegamenti non sono ancora disponibili :)')">CaSella</ion-button>
+  <ion-button (click)="showAnnounce('Collegamento1','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Collegamento1</ion-button>
   <ion-button (click)="showAnnounce('Convenzioni Aziendali','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Convenzioni Aziendali</ion-button>
-  <ion-button color='success' (click)="showAnnounce('Yammer','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Accedi a Yammer</ion-button>
-  <ion-button (click)="showAnnounce('SellaNews','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Sella News</ion-button>
+  <ion-button color='success' (click)="showAnnounce('Social','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Accedi a Social</ion-button>
+  <ion-button (click)="showAnnounce('News','Questa è una demo! I collegamenti non sono ancora disponibili :)')">onBoard News</ion-button>
   <ion-button (click)="showAnnounce('Guida Utilizzo Moduli HR','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Guida Utilizzo Moduli HR</ion-button>
-  <ion-button (click)="showAnnounce('Accesso a Day-Si','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Accesso a Day-Si</ion-button>
+  <ion-button (click)="showAnnounce('Accesso a Link','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Accesso a link</ion-button>
   <ion-button (click)="showAnnounce('Portale Video','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Portale Video</ion-button>
-  <ion-button color="medium" (click)="openSettings()">Impostazioni InSella</ion-button>
+  <ion-button color="medium" (click)="openSettings()">Impostazioni onBoard</ion-button>
 
 </ion-list>
 
 <ion-list align-items-center *ngIf="utente.stato==false">
-  <ion-button color="medium" (click)="openSettings()">Impostazioni InSella</ion-button>
+  <ion-button color="medium" (click)="openSettings()">Impostazioni onBoard</ion-button>
 </ion-list>
 </ion-list>
 

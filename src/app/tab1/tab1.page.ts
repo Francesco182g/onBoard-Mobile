@@ -98,6 +98,10 @@ export class Tab1Page implements OnInit {
     this.router.navigate(['tabs/suggestion']);
   }
 
+  openGuide() {
+    this.router.navigate(['guide']);
+  }
+
   async showAnnounce(nome, descrizione) {
     const alert = await this.alertCtrl.create({
       header: nome,

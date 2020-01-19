@@ -53,4 +53,8 @@ export class SettingsPage {
       console.log(error);
     });
   }
+
+  openGuide() {
+    this.router.navigate(['guide']);
+  }
 }

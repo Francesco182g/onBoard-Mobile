@@ -82,6 +82,17 @@ const routes: Routes = [
       }
       ,
       {
+        path: 'guide',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../guide/guide.module').then(m => m.GuidePageModule)
+          }
+        ]
+      }
+      ,
+      {
         path: 'calendar',
         children: [
           {

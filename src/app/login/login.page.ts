@@ -38,6 +38,8 @@ export class LoginPage implements OnInit {
     indirizzo: '',
   };
 
+  firstAccess: boolean;
+
 private database: AngularFirestore;
 private userCollection: AngularFirestoreCollection;
 
@@ -55,6 +57,8 @@ private user: string;
       this.checkToken();
     });
     this.userCollection = database.collection('users');
+    this.firstAccess = false;
+    this.checkFirstAccess();
   }
 
    // tslint:disable-next-line: variable-name
@@ -87,6 +91,16 @@ private user: string;
    });
  }
 
+ checkFirstAccess() {
+  this.storage.get('TOKEN_ONE').then( res => {
+    if (res === true) {
+      console.log('Access');
+      this.firstAccess = res;
+    }
+  });
+}
+
+
  checkToken() {
   this.storage.get('TOKEN_FIRE').then( res => {
     if (res) {
@@ -96,6 +110,10 @@ private user: string;
   });
 }
 
+setFirstAccess() {
+  console.log('first access true');
+  this.storage.set('TOKEN_ONE', true);
+}
 
  loginUser(value) {
    this.authService.loginUser(value)
@@ -106,6 +124,7 @@ private user: string;
       this.storage.set('TOKEN_FIRE', value);
       this.user = this.authService.userDetails().email;
       this.getUserInfo();
+      this.setFirstAccess();
      }, err => {
      this.errorMessage = err.message;
    });

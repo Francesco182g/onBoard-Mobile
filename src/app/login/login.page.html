@@ -1,39 +1,89 @@
 <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>onBoard - Login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>onBoard</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/dist/ionic/ionic.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/dist/ionic/ionic.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/css/ionic.bundle.css"/>
 
-  <ion-content padding>
-    <form class="form" [formGroup]="validations_form"  (ngSubmit)="loginUser(validations_form.value)">
+</ion-header>
+
+<body>
+  <ion-app>
+
+    <ion-content fullscreen padding scroll-y="false">
+      <ion-slides>
+
+        <ion-slide *ngIf="this.firstAccess == false">
+          <img src="assets/slide-1.png"/>
+          <h2>Welcome <b>onBoard DEVELOPER MODE</b></h2>
+          <p>L'applicazione <b>onBoard</b> aiuta il rapporto tra HR e candidati durante l'iter di assunzione.</p>
+          <p><b>ATTENZIONE! </b> L'applicazione è in fase DEVELOPER, molte funzionalità sono incomplete o non funzionanti</p>
+          <ion-button fill="clear">Swipe <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+        </ion-slide>
+
+        <ion-slide *ngIf="this.firstAccess == false">
+          <img src="assets/slide-2.png"/>
+          <h2>Come funziona?</h2>
+          <p><b>onBoard</b> ha due modalità di funzionamento: </p>
+          <p>Utente<b> in pre-assunzione</b> &</p> <p>Utente<b> Assunto</b></p>
+          <ion-button fill="clear">Swipe <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+        </ion-slide>
+
+        <ion-slide *ngIf="this.firstAccess == false">
+          <img src="assets/slide-3.png"/>
+          <h2>Cosa offre?</h2>
+          <p><b>onBoard</b> ti permette di caricare e scaricare i tuoi documenti, raggiungere la posizione di un colloquio con un click, e tante altre funzionalità.</p>
+          <ion-button fill="clear">Swipe <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+        </ion-slide>
+
+        <ion-slide *ngIf="this.firstAccess == false">
+          <img src="assets/slide-4.png"/>
+          <h2>Pronto a iniziare?</h2>
+          <ion-button fill="clear">Effettua il login! <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+        </ion-slide>
+
+        <ion-slide>
+          <form class="form" [formGroup]="validations_form"  (ngSubmit)="loginUser(validations_form.value)">
    
-      <ion-item>
-        <ion-label  position="floating" color="primary">Email</ion-label>
-        <ion-input type="text" formControlName="email"></ion-input>
-      </ion-item>
-      <div class="validation-errors">
-        <ng-container *ngFor="let validation of validation_messages.email">
-          <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
-            {{ validation.message }}
-          </div>
-        </ng-container>
-      </div>
-   
-      <ion-item>
-        <ion-label  position="floating" color="primary">Password</ion-label>
-        <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
-      </ion-item>
-      <div class="validation-errors">
-        <ng-container *ngFor="let validation of validation_messages.password">
-          <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
-            {{ validation.message }}
-          </div>
-        </ng-container>
-      </div>
-      <br>
-      <ion-button color="primary" expand="full"  class="submit-btn" type="submit"  [disabled]="!validations_form.valid">Log In</ion-button>
-   
-      <label class="error-message">{{errorMessage}}</label>
-    </form>
-    <ion-progress-bar type="indeterminate" reversed="true"></ion-progress-bar>
+            <ion-item>
+              <ion-label  position="floating" color="primary">Email</ion-label>
+              <ion-input type="text" formControlName="email"></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.email">
+                <div class="error-message" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+         
+            <ion-item>
+              <ion-label  position="floating" color="primary">Password</ion-label>
+              <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
+            </ion-item>
+            <div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.password">
+                <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+                  {{ validation.message }}
+                </div>
+              </ng-container>
+            </div>
+            <br>
+            <ion-button color="primary" expand="full"  class="submit-btn" type="submit"  [disabled]="!validations_form.valid">Log In</ion-button>
+         
+            <label class="error-message">{{errorMessage}}</label>
+          </form>
+          <ion-progress-bar type="indeterminate" reversed="true"></ion-progress-bar>
+        </ion-slide>
+      </ion-slides>
     </ion-content>
+  </ion-app>
+</body>
+
+      <!--
+    </ion-content>
+
+    
+    </ion-content>
+-->

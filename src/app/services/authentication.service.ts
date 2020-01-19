@@ -41,5 +41,6 @@ export class AuthenticationService {
    tokenOut() {
     this.storage.set('TOKEN_FIRE', null);
     this.storage.set('TOKEN_USER', null);
+    this.storage.set('TOKEN_ONE', false);
    }
 }

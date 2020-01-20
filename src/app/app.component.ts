@@ -101,7 +101,6 @@ export class AppComponent {
     this.authService.logoutUser()
     .then(res => {
       console.log(res);
-      this.router.navigate(['login']);
     })
     .catch(error => {
       console.log(error);

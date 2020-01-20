@@ -55,6 +55,13 @@ export class Tab2Page {
   });
   }
 
+  saveInCalendar(mail, data, ora, indirizzo) {
+    const browser = this.inAppBrowser.create('geo://0,0?q=' + mail, '_system', 'location=yes');
+    browser.on('loadstop').subscribe(event => {
+    browser.insertCSS({ code: 'body{color: red;'});
+  });
+  }
+
   getIncontri() {
     this.items = this.database.collection('users').doc(this.user).collection('incontro').snapshotChanges().pipe( map (changes => {
       return changes.map(a => {

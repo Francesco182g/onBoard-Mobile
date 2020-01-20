@@ -37,6 +37,7 @@ const routes: Routes = [
 },  { path: 'suggestion', loadChildren: './suggestion/suggestion.module#SuggestionPageModule' },
   { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarPageModule' },
   { path: 'guide', loadChildren: './guide/guide.module#GuidePageModule' },
+  { path: 'record', loadChildren: './record/record.module#RecordPageModule' },
 
 ];
 @NgModule({

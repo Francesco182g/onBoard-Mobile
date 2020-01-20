@@ -28,6 +28,7 @@ import { Storage, IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 import * as firebase from 'firebase';
+import { RecordOpService } from './services/record-op.service';
 
 firebase.initializeApp(environment.firebase);
 
@@ -51,6 +52,7 @@ firebase.initializeApp(environment.firebase);
     AuthenticationService,
     StorageService,
     AngularFirestore,
+    RecordOpService,
     InAppBrowser,
     LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

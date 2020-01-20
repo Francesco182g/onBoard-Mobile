@@ -66,7 +66,6 @@ export class Tab1Page implements OnInit {
     this.authService.logoutUser()
     .then(res => {
       console.log(res);
-      this.router.navigate(['login']);
     })
     .catch(error => {
       console.log(error);
@@ -100,6 +99,10 @@ export class Tab1Page implements OnInit {
 
   openGuide() {
     this.router.navigate(['guide']);
+  }
+
+  openRecord() {
+    this.router.navigate(['tabs/record']);
   }
 
   async showAnnounce(nome, descrizione) {

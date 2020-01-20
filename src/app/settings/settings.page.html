@@ -6,10 +6,6 @@
     <ion-title>
       Impostazioni
     </ion-title>
-    <ion-icon slot="end" name="notifications"></ion-icon>
-    <ion-buttons slot="end">
-        <ion-button></ion-button>
-      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -33,23 +29,6 @@
       </ion-text>
     </ion-item>
 
-    <ion-item (click)="notActive('Impostazione Upload')">
-      <ion-icon name='cloud-upload' color='primary' slot="start"></ion-icon>
-      Upload 
-      <ion-text slot="end">
-        Rete Cellulare & Wifi
-      </ion-text>
-    </ion-item>
-
-    <ion-item  (click)="notActive('Impostazione Download')">
-      <ion-icon name='cloud-download' color='primary' slot="start"></ion-icon>
-      Download 
-      <ion-text slot="end">
-        Rete Cellulare & Wifi
-      </ion-text>
-    </ion-item>
-
-
     <ion-list-header >
       Aspetto
     </ion-list-header >
@@ -64,16 +43,16 @@
       Account
     </ion-list-header>
 
-    <ion-item (click)="logout()">
-      <ion-icon name='exit' color='danger' slot="start"></ion-icon>
-      Logout
+    <ion-item (click)="openRecord()">
+      <ion-icon name='list' color='warring' slot="start"></ion-icon>
+      Registro delle Attività
       <ion-text slot="end">
       </ion-text>
     </ion-item>
 
-    <ion-item (click)="notActive('Modifica Profilo')">
-      <ion-icon name='contact' color='primary' slot="start"></ion-icon>
-      Modifica Profilo
+    <ion-item (click)="logout()">
+      <ion-icon name='exit' color='danger' slot="start"></ion-icon>
+      Logout
       <ion-text slot="end">
       </ion-text>
     </ion-item>

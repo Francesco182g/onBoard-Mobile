@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Storage } from '@ionic/storage';
 import { Platform } from '@ionic/angular';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { RecordOpService } from '../services/record-op.service';
 
 export interface Utente {
   id?: string;
@@ -51,6 +52,7 @@ private user: string;
     private formBuilder: FormBuilder,
     private storage: Storage,
     private platform: Platform,
+    private recordService: RecordOpService,
     database: AngularFirestore
   ) {
     this.platform.ready().then( _ => {
@@ -141,6 +143,7 @@ setFirstAccess() {
       if (!doc.exists) {
         console.log('No such document!');
       } else {
+        this.recordService.addRecord(this.user, 'login');
         // console.log('Document data:', doc.data());
         this.utente.email = this.user;
         this.utente.nome = doc.get('nome');

@@ -67,12 +67,31 @@ export class Tab3Page {
                 this.images = this.imageCollection.valueChanges();
   }
 
-  async showAnnounce(name, mes) {
+  async deleteImg(ide) {
+    this.imageCollection.doc(ide).delete();
+  }
+
+  async showAnnounce(name, ide) {
     const alert = await this.alertCtrl.create({
-      header: name,
-      message: mes,
-      buttons: ['Conferma']
-    });
+      header: 'Sei sicuro di voler cancellare il file: ',
+      message: name + ' ?',
+      buttons: [
+        {
+          text: 'NO',
+          handler: () => {
+            console.log('Disagree clicked');
+            return;
+          }
+        },
+        {
+          text: 'SI',
+          handler: data => {
+            this.deleteImg(ide);
+            return;
+          }
+        }
+        ]
+      });
     alert.present();
   }
 

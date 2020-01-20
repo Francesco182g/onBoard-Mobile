@@ -47,8 +47,7 @@ export class SettingsPage {
     this.auth.logoutUser()
     .then(res => {
       console.log(res);
-      this.router.navigate(['login']);
-        })
+    })
     .catch(error => {
       console.log(error);
     });
@@ -56,5 +55,9 @@ export class SettingsPage {
 
   openGuide() {
     this.router.navigate(['guide']);
+  }
+
+  openRecord() {
+    this.router.navigate(['tabs/record']);
   }
 }

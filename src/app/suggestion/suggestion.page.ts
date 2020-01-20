@@ -5,6 +5,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthenticationService } from '../services/authentication.service';
 import { Observable } from 'rxjs';
 import { AlertController } from '@ionic/angular';
+import { RecordOpService } from '../services/record-op.service';
 
 export interface Message {
   user: string;
@@ -24,7 +25,8 @@ export class SuggestionPage implements OnInit {
   messages: Observable<Message[]>;
 
   constructor(public afs: AngularFirestore, public afDatabase: AngularFireDatabase,
-              private authService: AuthenticationService, public alertCtrl: AlertController) {
+              private authService: AuthenticationService, public alertCtrl: AlertController,
+              private recordService: RecordOpService) {
     this.afs.collection('people');
     this.userEmail = this.authService.userDetails().email;
     this.messageCollection = afs.collection<Message>('message', ref => ref.orderBy('message', 'asc'));
@@ -64,7 +66,7 @@ export class SuggestionPage implements OnInit {
       header: 'Inviaci un suggerimento',
       inputs: [{
       name: 'mess',
-      placeholder: 'Descrizione > 5 caratteri',
+      placeholder: 'Problema/Suggerimento: descrizone',
       value: '',
     },
   ],
@@ -80,6 +82,7 @@ export class SuggestionPage implements OnInit {
       text: 'Invia',
       handler: data => {
         this.addMessage(data.mess);
+        this.recordService.addRecord(this.userEmail, 'suggerimento inviato');
         return;
         }
       }

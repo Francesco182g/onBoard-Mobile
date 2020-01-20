@@ -23,11 +23,11 @@
       </p>
     <ion-item *ngFor="let item of items | async">
       <ion-icon slot="start" name='navigate' item-start style="color: #55acee"></ion-icon>
-      <ion-label (click)="goTo(item.indirizzo)">
+      <ion-label >
         <h2>Incontro il: </h2>
         <h3>{{item.data}} alle {{item.ora}}</h3>
         <p>presso {{item.indirizzo}}</p>
-        <p slot="end"><ion-badge slot="end">Naviga Verso</ion-badge></p>
+        <p slot="end"><ion-badge slot="end" (click)="goTo(item.indirizzo)">Naviga Verso</ion-badge></p>
       </ion-label>
     </ion-item>
   </ion-card-content>

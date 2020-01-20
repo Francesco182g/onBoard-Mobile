@@ -24,9 +24,9 @@
         <ion-badge text-center *ngIf="item.approval==2"><ion-icon name="radio-button-on" color="danger"></ion-icon>Non Approvato</ion-badge>      
         <ion-badge text-center *ngIf="item.approval==3"><ion-icon name="radio-button-on" color="success"></ion-icon>Approvato</ion-badge>
       </ion-label>
-      <ion-item-options  (ionSwipe)="showAnnounce('Cancellazione ' + item.name + '', 'La cancellazione non è consentita, conttare il backoffice per cancellare un file!')">
-        <ion-item-option color="danger" >
-          <ion-icon slot="top" name="trash"></ion-icon>
+      <ion-item-options  (ionSwipe)="showAnnounce(item.name, item.id)">
+        <ion-item-option color="danger" (onClick)="showAnnounce(item.name, item.id)" >
+          <ion-icon slot="top" name="trash" (click)="showAnnounce(item.name, item.id)" ></ion-icon>
           Cancella
         </ion-item-option>
       </ion-item-options>

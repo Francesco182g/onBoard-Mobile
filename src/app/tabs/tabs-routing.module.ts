@@ -104,6 +104,17 @@ const routes: Routes = [
       }
       ,
       {
+        path: 'record',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../record/record.module').then(m => m.RecordPageModule)
+          }
+        ]
+      }
+      ,
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

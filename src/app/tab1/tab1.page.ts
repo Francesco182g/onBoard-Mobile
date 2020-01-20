@@ -8,8 +8,11 @@ import { Observable } from 'rxjs';
 import { AlertController } from '@ionic/angular';
 
 export interface Announce {
-  descrizione: string;
+  id?: string;
   titolo: string;
+  descrizione?: string;
+  data?: string;
+  ora?: string;
 }
 
 @Component({

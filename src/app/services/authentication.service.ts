@@ -54,13 +54,14 @@ export class AuthenticationService {
            console.log('Logout');
            this.tokenOut();
            resolve();
-           this.platform.backButton.unsubscribe();
+           this.router.ngOnDestroy();
+           this.router.navigate(['login']);
          }).catch((error) => {
            reject();
+           this.tokenOut();
          });
        }
      });
-     this.tokenOut();
    }
 
    userDetails() {

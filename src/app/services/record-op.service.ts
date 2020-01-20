@@ -28,11 +28,13 @@ export class RecordOpService {
 }
 
 addRecord(mail, value) {
+  const tzoffset = (new Date()).getTimezoneOffset() * 60000; // offset in milliseconds
+  const localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
   return new Promise<any>((resolve, reject) => {
     this.afs.collection('record-' + mail).add({
       email: mail,
       info: value,
-      date: new Date().toISOString(),
+      date: localISOTime,
     })
     .then(
       res => resolve(res),

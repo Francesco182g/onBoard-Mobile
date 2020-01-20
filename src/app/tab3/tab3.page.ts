@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { RecordOpService } from '../services/record-op.service';
 
 export interface MyData {
   id?: string;
@@ -58,7 +59,8 @@ export class Tab3Page {
   private imageCollection: AngularFirestoreCollection<MyData>;
 
   // tslint:disable-next-line: max-line-length
-  constructor(public alertCtrl: AlertController, private inAppBrowser: InAppBrowser, private storage: AngularFireStorage, private authService: AuthenticationService , private database: AngularFirestore) {
+  constructor(public alertCtrl: AlertController, private inAppBrowser: InAppBrowser, private storage: AngularFireStorage, private authService: AuthenticationService,
+              private database: AngularFirestore, private recordService: RecordOpService) {
                 this.isUploading = false;
                 this.isUploaded = false;
                 this.user = this.authService.userDetails().email;
@@ -170,7 +172,7 @@ async doConfirmDocument(event: FileList) {
               finalize(() => {
                 // Get uploaded file storage path
                 this.UploadedFileURL = fileRef.getDownloadURL();
-
+                this.recordService.addRecord(this.user, 'upload file');
                 this.UploadedFileURL.subscribe(resp => {
                   this.addImagetoDB({
                     name: file.name,

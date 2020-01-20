@@ -7,7 +7,6 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Observable } from 'rxjs';
 import { AlertController } from '@ionic/angular';
 import { Recordop } from '../services/record-op.service';
-import { NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-record',
@@ -23,12 +22,12 @@ export class RecordPage implements OnInit {
 
   constructor(public afs: AngularFirestore, public afDatabase: AngularFireDatabase,
               private authService: AuthenticationService, public alertCtrl: AlertController) {
-                // this.afs.collection('');
                 this.userEmail = this.authService.userDetails().email;
+                this.afs.collection('record-' + this.userEmail);
                 // tslint:disable-next-line: max-line-length
-                this.recordCollection = afs.collection<Recordop>('record-' + this.userEmail, ref => ref.orderBy('record-' + this.userEmail, 'asc'));
+                this.recordCollection = afs.collection<Recordop>('record-' + this.userEmail, ref => ref.orderBy('date', 'desc'));
                 this.records = this.recordCollection.valueChanges();
-                console.log('record-' + this.userEmail);
+                // console.log('record-' + this.userEmail);
 }
   ngOnInit() {
   }

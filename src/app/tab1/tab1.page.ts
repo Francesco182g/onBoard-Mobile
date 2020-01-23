@@ -95,6 +95,11 @@ export class Tab1Page implements OnInit {
     this.router.navigate(['tabs/settings']);
   }
 
+  openForum() {
+    this.showAnnounce('Forum', 'Sei in una chat pubblica, rispetta le regole di civiltà basilari!');
+    this.router.navigate(['tabs/forum']);
+  }
+
   openSuggestion() {
     this.showAnnounce('Suggerimenti', 'Inserisci un suggerimento per migliorare InSella :)');
     this.router.navigate(['tabs/suggestion']);
@@ -107,6 +112,11 @@ export class Tab1Page implements OnInit {
   openRecord() {
     this.router.navigate(['tabs/record']);
   }
+
+    openGames() {
+    this.router.navigate(['tabs/games']);
+  }
+
 
   async showAnnounce(nome, descrizione) {
     const alert = await this.alertCtrl.create({

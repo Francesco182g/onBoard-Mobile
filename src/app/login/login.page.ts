@@ -53,7 +53,7 @@ private user: string;
     private storage: Storage,
     private platform: Platform,
     private recordService: RecordOpService,
-    database: AngularFirestore
+    database: AngularFirestore,
   ) {
     this.platform.ready().then( _ => {
       this.checkToken();

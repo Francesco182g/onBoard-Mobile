@@ -17,7 +17,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire/';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { NgCalendarModule  } from 'ionic2-calendar';
 
@@ -29,6 +29,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 import * as firebase from 'firebase';
 import { RecordOpService } from './services/record-op.service';
+
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
+
+import * as Phaser from 'phaser-ce';
 
 firebase.initializeApp(environment.firebase);
 
@@ -45,6 +49,7 @@ firebase.initializeApp(environment.firebase);
     AngularFireStorageModule,
     NgCalendarModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     StatusBar,
@@ -54,6 +59,7 @@ firebase.initializeApp(environment.firebase);
     AngularFirestore,
     RecordOpService,
     InAppBrowser,
+    EmailComposer,
     LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

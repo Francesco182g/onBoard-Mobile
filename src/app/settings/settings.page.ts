@@ -60,4 +60,8 @@ export class SettingsPage {
   openRecord() {
     this.router.navigate(['tabs/record']);
   }
+
+  openMail() {
+    this.router.navigate(['tabs/mail']);
+  }
 }

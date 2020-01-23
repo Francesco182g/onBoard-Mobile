@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Contatta il Supporto     
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="this.problem === true">
+    <ion-label>Prima di contattare il supporto, verifica che il problema sia presente nel FAQ: </ion-label> 
+      <ion-item (click)="showAnnounce('Upload File', 'Assicurati che il formato file sia pdf, docx, oppure immagine (jpg,png,bmp)')">Upload file</ion-item>
+      <ion-item (click)="showAnnounce('Apertura Annuncio', 'Clicca annuncio per leggerne il contenuto')">Apertura annuncio</ion-item>
+      <ion-item (click)="showAnnounce('Incontro', 'Assicurati di avere un provider di mappe (es.google maps) per raggiungere una destinazione tramite navigatore')">Apertura sede incontro</ion-item>
+      <ion-item (click)="this.problem = false">Problema non presente</ion-item>
+</ion-list>
+
+
+
+  <form class="container" [formGroup]="mail" (ngSubmit)="sendEmail()" *ngIf="this.problem === false">
+    <ion-item>
+    <ion-label>Che tipo di assistenza necessiti?</ion-label>
+    <ion-select type="text" interface="action-sheet" formControlName="target"  required>
+      <ion-select-option value="francescogarofalo182@live.com">Supporto tecnico</ion-select-option>
+      <ion-select-option value="f.garofalo8@studenti.unisa.it">Supporto moduli assunzione</ion-select-option>
+      <ion-select-option value="francesco.garofalo1995@gmail.com">Richiesta informativa</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Oggetto</ion-label>
+    <ion-input placeholder='Indicare il tipo di richiesta' formControlName="object" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Messaggio</ion-label>
+    <ion-input placeholder='Indicare in modo sintetico il problema/richiesta' formControlName="mess" required></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" color="danger" type="submit" [disabled]="!mail.valid">
+    Invia
+  </ion-button>
+  </form>
+</ion-content>

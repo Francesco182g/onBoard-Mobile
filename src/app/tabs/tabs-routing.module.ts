@@ -115,6 +115,50 @@ const routes: Routes = [
       }
       ,
       {
+        path: 'mail',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../mail/mail.module').then(m => m.MailPageModule)
+          }
+        ]
+      }
+      ,
+      {
+        path: 'forum',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../forum/forum.module').then(m => m.ForumPageModule)
+          }
+        ]
+      }
+      ,
+      {
+        path: 'games',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../games/games.module').then(m => m.GamesPageModule)
+          }
+        ]
+      }
+      ,
+      {
+        path: 'game1',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../game1/game1.module').then(m => m.Game1PageModule)
+          }
+        ]
+      }
+      ,
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

@@ -4,9 +4,12 @@ import { Storage } from '@ionic/storage';
 import { Platform } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class AuthenticationService {
+  private reboot: Subject<boolean> = new Subject();
+  private reboot$ = this.reboot.asObservable();
 
   constructor(private storage: Storage, private platform: Platform, public alertCtrl: AlertController,
               public router: Router) {
@@ -54,7 +57,7 @@ export class AuthenticationService {
            console.log('Logout');
            this.tokenOut();
            resolve();
-           this.router.ngOnDestroy();
+           this.tokenOut();
            this.router.navigate(['login']);
          }).catch((error) => {
            reject();
@@ -73,6 +76,15 @@ export class AuthenticationService {
     this.storage.set('TOKEN_FIRE', null);
     this.storage.set('TOKEN_USER', null);
     this.storage.set('TOKEN_ONE', false);
+    this.restart();
    }
+
+  public watchReboot() {
+    return this.reboot$;
+  }
+
+  public restart() {
+    this.reboot.next(true);
+  }
 
 }

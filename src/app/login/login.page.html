@@ -74,7 +74,7 @@
          
             <label class="error-message">{{errorMessage}}</label>
           </form>
-          <ion-progress-bar type="indeterminate" reversed="true"></ion-progress-bar>
+          <ion-progress-bar type="indeterminate" reversed="true" *ngIf="this.firstAccess"></ion-progress-bar>
         </ion-slide>
       </ion-slides>
     </ion-content>

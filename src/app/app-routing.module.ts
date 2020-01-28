@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'mail', loadChildren: './mail/mail.module#MailPageModule' },
   { path: 'forum', loadChildren: './forum/forum.module#ForumPageModule' },
   { path: 'games', loadChildren: './games/games.module#GamesPageModule' },
-  { path: 'game1', loadChildren: './game1/game1.module#Game1PageModule' },
+
 
 ];
 @NgModule({

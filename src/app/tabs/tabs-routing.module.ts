@@ -148,17 +148,6 @@ const routes: Routes = [
       }
       ,
       {
-        path: 'game1',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../game1/game1.module').then(m => m.Game1PageModule)
-          }
-        ]
-      }
-      ,
-      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

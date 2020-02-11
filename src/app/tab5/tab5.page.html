@@ -9,46 +9,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  
-  
-  <form #formCtrl="ngForm">
-      <div align="center">
+<ion-content class="content-bg">
 
-          <ion-item class="profile-item"  (click)="showAnnounce('Immagine del Profilo','Non è ancora possibile aggiorare la foto profilo')">
-            <div class="profile-picture big-profile-picture">
-              <img src="https://image.flaticon.com/icons/png/512/23/23716.png">
-            </div>
-          </ion-item>
-        <h1>Ciao {{utente.nome}} </h1>
-        <ion-item *ngIf="utente.stato==false">
-          <ion-badge color='primary'>
-            <ion-icon color="danger" name="radio-button-on"></ion-icon>
-                     Utente In pre-assunzione
-        </ion-badge>
-      </ion-item>
-      <ion-item *ngIf="utente.stato==true">
-        <ion-badge color='primary'>
-          <ion-icon color='success' name="checkmark-circle"></ion-icon>
-        Utente Assunto
+  <div class="bg-primary vertical-padding">
+    
+    <img *ngIf="utente.sesso=='maschio'" src="https://image.flaticon.com/icons/svg/163/163801.svg" alt="" class="image-round">
+    <img *ngIf="utente.sesso=='femmina'" src="https://image.flaticon.com/icons/svg/163/163809.svg" alt="" class="image-round border-white">
+
+    <div class="ion-text-center">
+      <h4 class="text-white">Ciao {{utente.nome}} {{utente.cognome}} </h4>
+    </div>
+    <div class="ion-text-center">
+        <ion-badge color='primary' *ngIf="utente.stato==false">
+          <ion-icon color="danger" name="radio-button-on"></ion-icon>
+                   Utente In pre-assunzione
       </ion-badge>
-      </ion-item>
-      </div>
-      <h3 align-items-center> I tuoi dati personali</h3>
+      <ion-badge color='primary' *ngIf="utente.stato==true">
+        <ion-icon color='success' name="checkmark-circle"></ion-icon>
+      Utente Assunto
+    </ion-badge>
+    </div>
+
+  </div>
+
+  <h3 color='primary'>Ecco gli annunci recenti</h3>
   <ion-list>
-      <ion-item>
-        <ion-label floating>Nome: {{utente.nome}}</ion-label>
-        <ion-text></ion-text>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Cognome: {{utente.cognome}}</ion-label>
-        <ion-text></ion-text>
-      </ion-item>
-        <ion-item>
-          <ion-label floating>Codice Fiscale: {{utente.codice_fiscale}}</ion-label>
-          <ion-text></ion-text>
-        </ion-item>
+  <ion-item *ngFor="let item of announces | async"  (click)="showAnnounce(item.titolo, item.descrizione)">
+    <ion-icon slot="start" color="success" name="send"></ion-icon>
+    <ion-label>{{item.titolo}} </ion-label>
+  </ion-item>
   </ion-list>
+
   <h3 color='primary'>Collegamenti Interni </h3>
   <ion-list>
   <ion-item color="danger" *ngIf="utente.stato==false">
@@ -71,5 +62,4 @@
 </ion-list>
 </ion-list>
 
-</form>
 </ion-content>

@@ -18,6 +18,7 @@ export interface Utente {
   cittàNascita?: string;
   indirizzo?: string;
   stato?: boolean;
+  path?: string;
 }
 
 @Component({
@@ -37,6 +38,7 @@ export class LoginPage implements OnInit {
     sesso: '',
     cittàNascita: '',
     indirizzo: '',
+    path: '',
   };
 
   firstAccess: boolean;

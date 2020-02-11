@@ -57,7 +57,7 @@
                 <ion-label>Suggerimenti</ion-label>
             </ion-item>
             <ion-item (click)="openGames()">
-              <ion-icon slot="start" color="medium" name="chatbubbles"></ion-icon>
+              <ion-icon slot="start" color="success" name="basketball"></ion-icon>
               <ion-label>Giochi</ion-label>
           </ion-item>
         <ion-item (click)="openGuide()">
@@ -73,8 +73,10 @@
       <ion-icon slot="start" color="success" name="send"></ion-icon>
       <ion-label>{{item.titolo}} </ion-label>
     </ion-item>
-      </ion-list>
+    </ion-list>
+
       <ion-footer>
+
         <ion-button expand="full" color="danger" (click)="logout()">
           Logout
         </ion-button>

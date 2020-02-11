@@ -3,6 +3,9 @@ import { Utente } from '../login/login.page';
 import { Storage} from '@ionic/storage';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+import { Announce } from '../tab1/tab1.page';
 
 @Component({
   selector: 'app-tab5',
@@ -22,12 +25,17 @@ export class Tab5Page implements OnInit {
       sesso: '',
       cittàNascita: '',
       indirizzo: '',
+      path: '',
     };
 
+    annonunceCollection: AngularFirestoreCollection<Announce>;
+    announces: Observable<Announce[]>;
 
   constructor(private storage: Storage, public alertCtrl: AlertController ,
-              public router: Router) {
+              public router: Router, private database: AngularFirestore) {
     this.getUserInfo();
+    this.annonunceCollection = database.collection<Announce>('annunci', ref => ref.orderBy('titolo', 'asc'));
+    this.announces = this.annonunceCollection.valueChanges();
   }
 
   ngOnInit() {

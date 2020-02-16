@@ -46,6 +46,7 @@
       Non è possibile visualizzare i collegamenti alle funzionalità di onBoard poiché sei ancora in una fase di pre-assunzione :(
   </ion-item>
   <ion-list align-items-center *ngIf="utente.stato==true">
+    <ion-button (click)="testNFC()">BADGE</ion-button>
   <ion-button (click)="showAnnounce('Collegamento1','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Collegamento1</ion-button>
   <ion-button (click)="showAnnounce('Convenzioni Aziendali','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Convenzioni Aziendali</ion-button>
   <ion-button color='success' (click)="showAnnounce('Social','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Accedi a Social</ion-button>

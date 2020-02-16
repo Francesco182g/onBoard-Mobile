@@ -41,7 +41,8 @@ const routes: Routes = [
   { path: 'record', loadChildren: './record/record.module#RecordPageModule' },
   { path: 'mail', loadChildren: './mail/mail.module#MailPageModule' },
   { path: 'forum', loadChildren: './forum/forum.module#ForumPageModule' },
-  { path: 'games', loadChildren: './games/games.module#GamesPageModule' },
+  { path: 'games', loadChildren: './games/games.module#GamesPageModule' },  { path: 'badge', loadChildren: './badge/badge.module#BadgePageModule' },
+
 
 
 ];

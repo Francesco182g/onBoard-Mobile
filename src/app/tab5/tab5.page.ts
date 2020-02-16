@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Announce } from '../tab1/tab1.page';
+import { NFC, Ndef } from '@ionic-native/nfc';
 
 @Component({
   selector: 'app-tab5',
@@ -32,7 +33,9 @@ export class Tab5Page implements OnInit {
     announces: Observable<Announce[]>;
 
   constructor(private storage: Storage, public alertCtrl: AlertController ,
-              public router: Router, private database: AngularFirestore) {
+              public router: Router, private database: AngularFirestore,
+              private nfc: NFC, private ndef: Ndef
+              ) {
     this.getUserInfo();
     this.annonunceCollection = database.collection<Announce>('annunci', ref => ref.orderBy('titolo', 'asc'));
     this.announces = this.annonunceCollection.valueChanges();
@@ -64,5 +67,20 @@ export class Tab5Page implements OnInit {
   openSettings() {
     this.router.navigate(['tabs/settings']);
   }
+
+  testNFC() {
+    this.nfc.addNdefListener(() => {
+      console.log('successfully attached ndef listener');
+    }, (err) => {
+      console.log('error attaching ndef listener', err);
+    }).subscribe((event) => {
+      console.log('received ndef message. the tag contains: ', event.tag);
+      console.log('decoded tag id', this.nfc.bytesToHexString(event.tag.id));
+
+      const message = this.ndef.textRecord('Hello world');
+      this.nfc.share([message]);
+    });
+  }
+
 
 }

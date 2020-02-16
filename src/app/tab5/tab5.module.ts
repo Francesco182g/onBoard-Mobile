@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
+import { NFC, Ndef } from '@ionic-native/nfc';
 
 import { Tab5Page } from './tab5.page';
 

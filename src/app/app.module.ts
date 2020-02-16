@@ -32,6 +32,9 @@ import { RecordOpService } from './services/record-op.service';
 
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
+// NFC
+import { NFC, Ndef } from '@ionic-native/nfc';
+
 import * as Phaser from 'phaser-ce';
 
 firebase.initializeApp(environment.firebase);
@@ -53,6 +56,8 @@ firebase.initializeApp(environment.firebase);
   ],
   providers: [
     StatusBar,
+    NFC,
+    Ndef,
     SplashScreen,
     AuthenticationService,
     StorageService,

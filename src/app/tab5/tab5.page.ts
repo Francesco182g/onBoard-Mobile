@@ -8,6 +8,7 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/fire
 import { Announce } from '../tab1/tab1.page';
 import { NFC, Ndef } from '@ionic-native/nfc';
 
+
 @Component({
   selector: 'app-tab5',
   templateUrl: './tab5.page.html',
@@ -34,11 +35,12 @@ export class Tab5Page implements OnInit {
 
   constructor(private storage: Storage, public alertCtrl: AlertController ,
               public router: Router, private database: AngularFirestore,
-              private nfc: NFC, private ndef: Ndef
+              private nfc: NFC
               ) {
     this.getUserInfo();
     this.annonunceCollection = database.collection<Announce>('annunci', ref => ref.orderBy('titolo', 'asc'));
     this.announces = this.annonunceCollection.valueChanges();
+
   }
 
   ngOnInit() {
@@ -77,8 +79,7 @@ export class Tab5Page implements OnInit {
       console.log('received ndef message. the tag contains: ', event.tag);
       console.log('decoded tag id', this.nfc.bytesToHexString(event.tag.id));
 
-      const message = this.ndef.textRecord('Hello world');
-      this.nfc.share([message]);
+
     });
   }
 

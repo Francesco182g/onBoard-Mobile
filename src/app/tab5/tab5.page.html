@@ -32,7 +32,7 @@
 
   </div>
 
-  <h3 color='primary'>Ecco gli annunci recenti</h3>
+  <h3>Ecco gli annunci recenti</h3>
   <ion-list>
   <ion-item *ngFor="let item of announces | async"  (click)="showAnnounce(item.titolo, item.descrizione)">
     <ion-icon slot="start" color="success" name="send"></ion-icon>
@@ -40,13 +40,16 @@
   </ion-item>
   </ion-list>
 
-  <h3 color='primary'>Collegamenti Interni </h3>
+  <h3>Collegamenti Interni </h3>
   <ion-list>
   <ion-item color="danger" *ngIf="utente.stato==false">
       Non è possibile visualizzare i collegamenti alle funzionalità di onBoard poiché sei ancora in una fase di pre-assunzione :(
   </ion-item>
   <ion-list align-items-center *ngIf="utente.stato==true">
-    <ion-button (click)="testNFC()">BADGE</ion-button>
+    <ion-button color="success" *ngIf="this.turno===false" (click)="onBadge()">Inizio Turno</ion-button>
+        <ion-button color="danger" *ngIf="this.turno===true" (click)="offBadge()">Fine Turno</ion-button>
+  </ion-list>
+  <ion-list align-items-center *ngIf="utente.stato==true">
   <ion-button (click)="showAnnounce('Collegamento1','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Collegamento1</ion-button>
   <ion-button (click)="showAnnounce('Convenzioni Aziendali','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Convenzioni Aziendali</ion-button>
   <ion-button color='success' (click)="showAnnounce('Social','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Accedi a Social</ion-button>
@@ -55,12 +58,24 @@
   <ion-button (click)="showAnnounce('Accesso a Link','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Accesso a link</ion-button>
   <ion-button (click)="showAnnounce('Portale Video','Questa è una demo! I collegamenti non sono ancora disponibili :)')">Portale Video</ion-button>
   <ion-button color="medium" (click)="openSettings()">Impostazioni onBoard</ion-button>
-
 </ion-list>
 
 <ion-list align-items-center *ngIf="utente.stato==false">
   <ion-button color="medium" (click)="openSettings()">Impostazioni onBoard</ion-button>
 </ion-list>
+</ion-list>
+
+<ion-list padding *ngIf="utente.stato==true">
+  <ion-button block (click)="startScanning()">Attiva Connessione Badge</ion-button>
+  <ion-list-header>
+    availlable Devices
+  </ion-list-header>
+  <ion-item *ngFor='let device of unpairedDevices'>
+    <span (click)="selectDevice(device.address)">
+      {{device.name}}
+    </span>
+  </ion-item>
+  <ion-spinner name="crescent" *ngIf="gettingDevices"></ion-spinner>
 </ion-list>
 
 </ion-content>

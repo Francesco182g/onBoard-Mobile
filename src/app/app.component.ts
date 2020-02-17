@@ -42,7 +42,7 @@ export class AppComponent {
     {
       title: 'Profilo',
       url: '/tabs/tab5',
-      icon: 'contact'
+      icon: 'person-outline'
     },
     {
       title: 'Impostazioni',

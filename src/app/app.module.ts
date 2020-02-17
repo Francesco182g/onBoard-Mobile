@@ -32,8 +32,7 @@ import { RecordOpService } from './services/record-op.service';
 
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
-// NFC
-import { NFC, Ndef } from '@ionic-native/nfc';
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 
 import * as Phaser from 'phaser-ce';
 
@@ -56,8 +55,6 @@ firebase.initializeApp(environment.firebase);
   ],
   providers: [
     StatusBar,
-    NFC,
-    Ndef,
     SplashScreen,
     AuthenticationService,
     StorageService,
@@ -66,6 +63,7 @@ firebase.initializeApp(environment.firebase);
     InAppBrowser,
     EmailComposer,
     LocalNotifications,
+    BluetoothSerial,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
